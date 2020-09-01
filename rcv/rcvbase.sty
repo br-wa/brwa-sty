@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{rcvbase}[2020/08/15 0.0.1]
+\ProvidesPackage{rcvbase}[2020/08/16 0.1.0]
 
 \RequirePackage{pgfopts}
 \RequirePackage{xparse}
@@ -64,6 +64,11 @@
         \ayetem#1\\
     \fi
 }
+\NewDocumentCommand{\proclist}{>{\SplitList{;}}m m}{
+    \rcvbase@item@firsttrue
+    \RenewDocumentCommand{\rcv@loc}{}{#2}
+    \ProcessList{#1}{\condadd}
+}
 \NewDocumentCommand{\rcvitem}{s m m m >{\SplitList{;}}o >{\IfEmpty{}}O{}}{
     \IfBooleanTF{#1}{
         \noindent\textbf{#2} #3\hfill#4\\
@@ -75,25 +80,15 @@
         \ProcessList{#5}{\condadd}
     }
 }
-\NewDocumentCommand{\rcvexpitem}{s m m m >{\SplitList{;}}o >{\IfEmpty{}}O{}}{
-    \IfBooleanTF{#1}{
-        \noindent\textbf{#2} | \emph{#3}\hfill#4\\
-    }
-    {
-        \noindent\textbf{#2} | \emph{#3}\hfill#4\\
-        \rcvbase@item@firsttrue
-        \RenewDocumentCommand{\rcv@loc}{}{#6}
-        \ProcessList{#5}{\condadd}
+\NewDocumentCommand{\rcvexpitem}{s m m m o >{\IfEmpty{}}O{}}{
+    \noindent\textbf{#2} | \emph{#3}\hfill#4\\
+    \IfBooleanTF{#1}{}{
+        \proclist{#5}{#6}
     }
 }
-\NewDocumentCommand{\rcvbdate}{s m m m >{\SplitList{;}}o >{\IfEmpty{}}O{}}{
-    \IfBooleanTF{#1}{
-        \noindent\textbf{#2} #3\hfill\textbf{#4}\\
-    }
-    {
-        \noindent\textbf{#2} #3\hfill\textbf{#4}\\
-        \rcvbase@item@firsttrue
-        \RenewDocumentCommand{\rcv@loc}{}{#6}
-        \ProcessList{#5}{\condadd}
+\NewDocumentCommand{\rcvbdate}{s m m m o >{\IfEmpty{}}O{}}{
+    \noindent\textbf{#2} #3\hfill\textbf{#4}\\
+    \IfBooleanTF{#1}{}{
+        \proclist{#5}{#6}
     }
 }
