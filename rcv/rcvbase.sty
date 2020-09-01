@@ -1,0 +1,99 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rcvbase}[2020/08/15 0.0.1]
+
+\RequirePackage{pgfopts}
+\RequirePackage{xparse}
+\RequirePackage{enumitem}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\IfEmpty}{mm}
+ {
+  \tl_if_blank:nTF { #2 }
+   { \tl_set:Nn \ProcessedArgument { #1 } }
+   { \tl_set:Nn \ProcessedArgument { #2 } }
+ }
+\ExplSyntaxOff
+
+\NewDocumentCommand{\rcv@name}{}{Nameless}
+\NewDocumentCommand{\rcv@loc}{}{}
+
+\pgfkeys{
+    /rcvbase/.cd,
+    location/.code=\RenewDocumentCommand{\rcv@loc}{}{#1}
+}
+
+\ProcessPgfOptions{/rcvbase}
+
+\NewDocumentCommand{\setname}{m}{
+    \RenewDocumentCommand{\rcv@name}{}{#1}
+}
+\NewDocumentCommand{\rcvhead}{}{
+    \begin{center}
+        \LARGE\textbf{\rcv@name}
+    \end{center}
+    \vspace{-5mm}
+}
+\NewDocumentCommand{\bm}{m}{
+    #1\,\,\,\raisebox{0.7pt}{$\bullet$}
+}
+\NewDocumentCommand{\mylist}{>{\SplitList{;}}m}{
+    \ProcessList{#1}{\bm}
+}
+\NewDocumentCommand{\setmail}{m}{
+    \href{mailto:#1}{#1}
+}
+\NewDocumentCommand{\subhead}{m m}{
+    \begin{center}
+        \mylist{#1}\setmail{#2}
+    \end{center}
+}
+\NewDocumentCommand{\rcvsect}{m}{
+    \vspace{5mm}
+    \noindent\textbf{#1}
+    \vspace{1.2mm}
+    \hrule height 1.5pt 
+    \vspace{1.2mm}
+}
+\newif\ifrcvbase@item@first
+\NewDocumentCommand{\ayetem}{}{\noindent\raisebox{0pt}{$\bullet$}\,\,}
+\NewDocumentCommand{\condadd}{m}{
+    \ifrcvbase@item@first
+        \rcvbase@item@firstfalse
+        \ayetem #1\hfill\rcv@loc\\
+    \else
+        \ayetem#1\\
+    \fi
+}
+\NewDocumentCommand{\rcvitem}{s m m m >{\SplitList{;}}o >{\IfEmpty{}}O{}}{
+    \IfBooleanTF{#1}{
+        \noindent\textbf{#2} #3\hfill#4\\
+    }
+    {
+        \noindent\textbf{#2} #3\hfill#4\\
+        \rcvbase@item@firsttrue
+        \RenewDocumentCommand{\rcv@loc}{}{#6}
+        \ProcessList{#5}{\condadd}
+    }
+}
+\NewDocumentCommand{\rcvexpitem}{s m m m >{\SplitList{;}}o >{\IfEmpty{}}O{}}{
+    \IfBooleanTF{#1}{
+        \noindent\textbf{#2} | \emph{#3}\hfill#4\\
+    }
+    {
+        \noindent\textbf{#2} | \emph{#3}\hfill#4\\
+        \rcvbase@item@firsttrue
+        \RenewDocumentCommand{\rcv@loc}{}{#6}
+        \ProcessList{#5}{\condadd}
+    }
+}
+\NewDocumentCommand{\rcvbdate}{s m m m >{\SplitList{;}}o >{\IfEmpty{}}O{}}{
+    \IfBooleanTF{#1}{
+        \noindent\textbf{#2} #3\hfill\textbf{#4}\\
+    }
+    {
+        \noindent\textbf{#2} #3\hfill\textbf{#4}\\
+        \rcvbase@item@firsttrue
+        \RenewDocumentCommand{\rcv@loc}{}{#6}
+        \ProcessList{#5}{\condadd}
+    }
+}
