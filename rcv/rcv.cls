@@ -19,7 +19,7 @@
 
 \RequirePackage{fontspec}
 \setmainfont[
-    Path=~/texmf/tex/latex/brwa/fonts/\rcv@fontfam/,
+    Path=~/texmf/tex/latex/brwa/.fonts/\rcv@fontfam/,
     UprightFont=*.ttf,
     BoldFont=*b.ttf,
     ItalicFont=*i.ttf,
