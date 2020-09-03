@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{brwa}[2020/09/01 0.0.0]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+
+\newcounter{curprob}
+\NewDocumentCommand{\addsol}{o o}{
+    \stepcounter{curprob}
+    {\large \textbf{Solution \arabic{section}.\arabic{curprob}.} Collaborators:
+        \IfNoValueTF{#2}{None}{#2}
+    }
+}    
+\NewDocumentCommand{\skipsol}{}{\stepcounter{curprob}}
