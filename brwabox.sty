@@ -2,6 +2,7 @@
 \ProvidesPackage{brwabox}[2020/09/01 0.0.1]
 
 \RequirePackage{pgfopts}
+\RequirePackage{amsthm} 
 \RequirePackage{thmtools}
 \PassOptionsToClass{svgnames}{xcolor} \RequirePackage{xcolor}
 
@@ -33,5 +34,5 @@
 
 \ifbrw@notes
 	\declaretheorem[numberwithin=section,name=Definition]{defn}
-	\declaretheorem[sibling=defn,name=Theorem]{theo}
+	\declaretheorem[sibling=defn,name=Theorem]{thm}
 \fi
