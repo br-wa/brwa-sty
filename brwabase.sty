@@ -1,18 +1,22 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{brwabase}[2020/09/01 0.0.1]
+\ProvidesPackage{brwabase}[2020/09/01 0.0.2]
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
 \RequirePackage{xparse}
 
 \RenewDocumentCommand{\AA}{}{\mathbb A} %FIX THIS FOR CHEM
 \NewDocumentCommand{\CC}{}{\mathbb C}
+\NewDocumentCommand{\FF}{}{\mathbb F}
 \NewDocumentCommand{\PP}{}{\mathbb P}
 \NewDocumentCommand{\QQ}{}{\mathbb Q}
 \NewDocumentCommand{\RR}{}{\mathbb R}
 \NewDocumentCommand{\ZZ}{}{\mathbb Z}
 
 \NewDocumentCommand{\x}{}{\times}
+\NewDocumentCommand{\eps}{}{\varepsilon}
 
 \DeclareMathOperator{\N}{N}
 \DeclareMathOperator{\T}{T}
