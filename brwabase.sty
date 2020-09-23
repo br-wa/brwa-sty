@@ -5,6 +5,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
+\RequirePackage{mathtools}
 \RequirePackage{xparse}
 
 \RenewDocumentCommand{\AA}{}{\mathbb A} %FIX THIS FOR CHEM
@@ -17,7 +18,15 @@
 
 \NewDocumentCommand{\x}{}{\times}
 \NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\ol}{m}{\overline{#1}}
+
+\NewDocumentCommand{\gl}{}{\mathfrak{gl}}
 
 \DeclareMathOperator{\N}{N}
 \DeclareMathOperator{\T}{T}
 \DeclareMathOperator{\tea}{char}
+\DeclareMathOperator{\Gal}{Gal}
+
+\DeclarePairedDelimiter{\parens}{(}{)}
+\DeclarePairedDelimiter{\mg}{\Vert}{\Vert}
+\DeclarePairedDelimiter{\abs}{|}{|}

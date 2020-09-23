@@ -2,6 +2,7 @@
 \ProvidesPackage{brwabox}[2020/09/01 0.0.2]
 
 \RequirePackage{pgfopts}
+\RequirePackage{enumitem}
 \RequirePackage{amsthm} 
 \RequirePackage{thmtools}
 \PassOptionsToClass{svgnames}{xcolor} \RequirePackage{xcolor}
@@ -22,11 +23,10 @@
 
 \ifbrw@pset
 	\newcounter{curprob}
-	\NewDocumentCommand{\addsol}{o o}{
+	\NewDocumentCommand{\addsol}{o}{
     	\stepcounter{curprob}
-    	{\large \textbf{Solution \arabic{section}.\arabic{curprob}.} Collaborators:
-        	\IfNoValueTF{#2}{None}{#2}
-    	}
+		{\large \textbf{Solution \arabic{section}.\arabic{curprob}.}} Collaborators/Sources Consulted:
+        \IfNoValueTF{#1}{None}{#1}
 	}    
 	\NewDocumentCommand{\skipsol}{}{\stepcounter{curprob}}
 	\declaretheorem[numbered=no,name=Lemma]{lem}
