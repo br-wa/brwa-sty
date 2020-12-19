@@ -13,7 +13,7 @@
     font=cambria,
     margin/.store in=\rcv@margin,
     margin=1in,
-    location/.code=PassOptionsToPackage{loation=#1}{rcvbase}
+    location/.code=PassOptionsToPackage{location=#1}{rcvbase}
 }
 \ProcessPgfOptions{/rcv}
 

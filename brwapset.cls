@@ -9,29 +9,30 @@
 \setlength{\parindent}{0pt}
 
 \pgfkeys{
-	/rcv/.cd,
-	font/.store in=\rcv@fontfam,
+	/bps/.cd,
+	font/.store in=\bps@fontfam,
 	font=cambria,
-	margin/.store in=\rcv@margin,
+	margin/.store in=\bps@margin,
 	margin=1in,
-    classid/.store in=\rcv@classid,
+    classid/.store in=\bps@classid,
     classid=\textcolor{red}{name your class},
-    set/.store in=\rcv@set,
+    set/.store in=\bps@set,
     set=0
 }
-\ProcessPgfOptions{/rcv}
+\ProcessPgfOptions{/bps}
 
-\setcounter{section}{\rcv@set}
+\setcounter{section}{\bps@set}
 
 \RequirePackage{fontspec}
 \setmainfont[
-	Path=$HOME/texmf/tex/latex/brwa/.fonts/\rcv@fontfam/,
+	Path=$HOME/texmf/tex/latex/brwa/.fonts/\bps@fontfam/,
 	UprightFont=*.ttf,
 	BoldFont=*b.ttf,
     ItalicFont=*i.ttf,
     BoldItalicFont=*z.ttf,
-]{\rcv@fontfam}
-\RequirePackage[margin=\rcv@margin]{geometry}
+]{\bps@fontfam}
+\RequirePackage[margin=\bps@margin]{geometry}
 
-\RequirePackage{brwa}
+\RequirePackage{brwabase}
+\PassOptionsToPackage{pset}{brwabox} \RequirePackage{brwabox}
 

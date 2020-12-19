@@ -3,4 +3,4 @@ The style package that I use. Note that it is intended that there are a lot of o
 
 Furthermore, please compile with **LuaLaTeX** or **XeTeX**, not pdfLaTeX. I personally use ```latexmk -pdflatex='lualatex' -pdf [tex document]``` from the Command Line.
 
-Thanks to Jason Chen for extensive advice and to Daniel Zhu for general usefulness.
+Thanks to [Jason Chen](https://github.com/chezbgone) for extensive advice and to Daniel Zhu for general usefulness.

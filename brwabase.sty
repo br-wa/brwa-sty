@@ -1,0 +1,55 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{brwabase}[2020/09/01 0.0.2]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\RequirePackage{mathtools}
+\RequirePackage{xparse}
+
+\RenewDocumentCommand{\AA}{}{\mathbb A} %FIX THIS FOR CHEM
+\NewDocumentCommand{\CC}{}{\mathbb C}
+\NewDocumentCommand{\FF}{}{\mathbb F}
+\NewDocumentCommand{\NN}{}{\mathbb N}
+\NewDocumentCommand{\PP}{}{\mathbb P}
+\NewDocumentCommand{\QQ}{}{\mathbb Q}
+\NewDocumentCommand{\RR}{}{\mathbb R}
+\NewDocumentCommand{\ZZ}{}{\mathbb Z}
+
+\NewDocumentCommand{\tenp}{}{\otimes}
+\NewDocumentCommand{\gan}{}{\varphi}
+\NewDocumentCommand{\x}{}{\times}
+\NewDocumentCommand{\eps}{}{\varepsilon}
+\NewDocumentCommand{\ol}{m}{\overline{#1}}
+\NewDocumentCommand{\Cl}{}{\mathcal C \ell}
+
+\NewDocumentCommand{\gl}{}{\mathfrak{gl}}
+
+\DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\T}{T}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\tea}{char}
+\DeclareMathOperator{\sep}{sep}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\supp}{supp}
+
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\gal}{Gal}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\divg}{Div}
+\DeclareMathOperator{\divis}{div}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\pic}{Pic}
+
+\RenewDocumentCommand{\div}{}{\divis}
+
+\DeclarePairedDelimiter{\parens}{(}{)}
+\DeclarePairedDelimiter{\mg}{\Vert}{\Vert}
+\DeclarePairedDelimiter{\abs}{|}{|}
+\DeclarePairedDelimiter{\set}{\{}{\}}
