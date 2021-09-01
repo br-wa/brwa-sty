@@ -1,11 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{brwabox}[2020/09/01 0.0.2]
+\ProvidesPackage{brwabox}[2021/09/01 0.0.3]
 
+\RequirePackage{amsthm}
+\RequirePackage{xparse}
+\RequirePackage{inputenc}
 \RequirePackage{pgfopts}
 \RequirePackage{enumitem}
-\RequirePackage{amsthm} 
 \RequirePackage{thmtools}
+\RequirePackage{letltxmacro}
+\RequirePackage{marginnote}
 \PassOptionsToPackage{svgnames}{xcolor} \RequirePackage{xcolor}
+
+\RequirePackage{brwaobj}
 
 \newif\ifbrw@pset
 \newif\ifbrw@notes
@@ -27,15 +33,33 @@
     	\stepcounter{curprob}
 		{\large \textbf{Solution \arabic{section}.\arabic{curprob}.}} Collaborators/Sources Consulted:
         \IfNoValueTF{#1}{None}{#1}
-	}    
+	}
+	\NewDocumentCommand{\addlabeledsol}{m o}{
+        \stepcounter{curprob}
+		{\large \textbf{Solution \arabic{section}.\arabic{curprob} (#1).}} Collaborators/Sources Consulted:
+        \IfNoValueTF{#2}{None}{#2}
+    }
 	\NewDocumentCommand{\skipsol}{}{\stepcounter{curprob}}
 	\declaretheorem[numbered=no,name=Lemma]{lem}
 \fi
 
 \ifbrw@notes
-	\declaretheorem[numberwithin=section,name=Definition]{defn}
-	\declaretheorem[sibling=defn,name=Theorem]{theo}
-	\declaretheorem[sibling=defn,name=Fact]{fact}
-	\declaretheorem[sibling=defn,name=Example]{exm}
-	\declaretheorem[sibling=defn,name=Lemma]{lem}
+	\reversemarginpar
+
+	\NewAnnotatedTheorem{defn}{Definition}{\colorstar{DarkRed}}
+	\NewAnnotatedTheorem{theo}{Theorem}{\colorstar{DarkRed}}[defn]
+	\let\thm\theo
+	\let\endthm\endtheo
+	
+	\NewAnnotatedTheorem{fact}{Fact}{\colorlozenge{DarkGreen}}[defn]
+	\NewAnnotatedTheorem{lem}{Lemma}{\colorlozenge{DarkGreen}}[defn]
+	\NewAnnotatedTheorem{cor}{Corollary}{\colorlozenge{DarkGreen}}[defn]
+	
+	\NewAnnotatedTheorem{exm}{Example}{\colormoon{DarkPurple}}[defn]
+	\NewAnnotatedTheorem{que}{Question}{\colormoon{DarkPurple}}[defn]
+
+	\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]
+	
+	\LetLtxMacro{\oldemph}{\emph}
+	\RenewDocumentCommand{\emph}{m}{\oldemph{\textcolor{DarkBlue}{#1}}}
 \fi
