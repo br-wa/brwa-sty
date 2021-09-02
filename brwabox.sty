@@ -29,16 +29,16 @@
 
 \ifbrw@pset
 	\newcounter{curprob}
-	\NewDocumentCommand{\addsol}{o}{
+	\NewDocumentCommand{\addsol}{O{None}}{
     	\stepcounter{curprob}
 		{\large \textbf{Solution \arabic{section}.\arabic{curprob}.}} Collaborators/Sources Consulted:
-        \IfNoValueTF{#1}{None}{#1}
+		#1
 	}
-	\NewDocumentCommand{\addlabeledsol}{m o}{
+	\NewDocumentCommand{\addlabeledsol}{m O{None}}{
         \stepcounter{curprob}
 		{\large \textbf{Solution \arabic{section}.\arabic{curprob} (#1).}} Collaborators/Sources Consulted:
-        \IfNoValueTF{#2}{None}{#2}
-    }
+    	#2
+	}
 	\NewDocumentCommand{\skipsol}{}{\stepcounter{curprob}}
 	\declaretheorem[numbered=no,name=Lemma]{lem}
 \fi
@@ -51,12 +51,12 @@
 	\let\thm\theo
 	\let\endthm\endtheo
 	
-	\NewAnnotatedTheorem{fact}{Fact}{\colorlozenge{DarkGreen}}[defn]
-	\NewAnnotatedTheorem{lem}{Lemma}{\colorlozenge{DarkGreen}}[defn]
-	\NewAnnotatedTheorem{cor}{Corollary}{\colorlozenge{DarkGreen}}[defn]
+	\NewAnnotatedTheorem{fact}{Fact}{\colorplus{DarkGreen}}[defn]
+	\NewAnnotatedTheorem{lem}{Lemma}{\colorplus{DarkGreen}}[defn]
+	\NewAnnotatedTheorem{cor}{Corollary}{\colorplus{DarkGreen}}[defn]
 	
-	\NewAnnotatedTheorem{exm}{Example}{\colormoon{DarkPurple}}[defn]
-	\NewAnnotatedTheorem{que}{Question}{\colormoon{DarkPurple}}[defn]
+	\NewAnnotatedTheorem{exm}{Example}{\colordisk{DarkPurple}}[defn]
+	\NewAnnotatedTheorem{que}{Question}{\colordisk{DarkPurple}}[defn]
 
 	\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]
 	
