@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{brwaobj}[2021/09/01 0.0.0]
+
+\RequirePackage{tikz}
+\RequirePackage{wasysym}
+\RequirePackage{fontawesome}
+\RequirePackage{amsbsy}
+
+\NewDocumentCommand{\TemporaryTheoremName}{}{}
+
+% custom theorem
+\NewDocumentCommand{\NewAnnotatedTheorem}{m m m o}{
+	\IfNoValueTF{#4}{
+		\declaretheorem[numberwithin=section,name=#2]{#1container}
+	}{
+		\declaretheorem[sibling=#4, name=#2]{#1container}
+		\expandafter\RenewDocumentCommand\csname the#1container\endcsname{}{\arabic{section}.\arabic{#1container}}%
+	}
+	\newcounter{#1}[section]
+	\NewDocumentEnvironment{#1}{s o o}{
+		\begin{#1container}
+		\IfNoValueTF{#4}{
+			\stepcounter{#1}
+		}{
+			% #4 gets stepped, but not #4container
+			\stepcounter{#4container}
+		}
+		\IfNoValueTF{##2}{}{\textnormal{(##2)}}
+		\IfBooleanTF{##1}{}{
+			{\marginnote{\Large\textnormal{#3}\par}\hspace{-2mm}}%
+		}
+	}{
+		\end{#1container}
+	}
+}
+
+% define auxilary colors
+\colorlet{DarkRed}{Red!80!Black}
+\colorlet{DarkOrange}{Orange!80!Black}
+\colorlet{DarkYellow}{Yellow!80!Black}
+\colorlet{DarkGreen}{Green!80!Black}
+\colorlet{DarkBlue}{Blue!80!Black}
+\colorlet{DarkPurple}{Purple!80!Black}
+
+% define colorsymbols
+\NewDocumentCommand{\bigplus}{}{\mathord{\begin{tikzpicture}[baseline=0ex, line width=2.5, scale=0.2]
+\draw (1,0) -- (1,2);
+\draw (0,1) -- (2,1);
+\end{tikzpicture}}}
+
+\NewDocumentCommand{\colorstar}{m}{\textcolor{#1}{$\bigstar$}}
+\NewDocumentCommand{\colormoon}{m}{\textcolor{#1}{\LEFTCIRCLE}}
+\NewDocumentCommand{\colorlozenge}{m}{\textcolor{#1}{\blacklozenge}}
+\NewDocumentCommand{\colorflask}{m}{\textcolor{#1}{\faFlask}}
+\NewDocumentCommand{\colordisk}{m}{\textcolor{#1}{\CIRCLE}}
+\NewDocumentCommand{\colordagger}{m}{\textcolor{#1}{\dagger}}
+\NewDocumentCommand{\colortrileft}{m}{\textcolor{#1}{\blacktriangleleft}}
+\NewDocumentCommand{\colortriright}{m}{\textcolor{#1}{\blacktriangleright}}
+\NewDocumentCommand{\colorplus}{m}{\textcolor{#1}{$\bigplus$}}
