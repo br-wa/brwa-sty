@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{brwabox}[2021/09/01 0.0.3]
+\ProvidesPackage{brwabox}[2021/09/05 0.1.0]
 
 \RequirePackage{amsthm}
 \RequirePackage{xparse}
@@ -15,14 +15,17 @@
 
 \newif\ifbrw@pset
 \newif\ifbrw@notes
+\newif\ifbrw@fancy
 
 \brw@psetfalse
 \brw@notesfalse
+\brw@fancyfalse
 
 \pgfkeys{
 	/brwabox/.cd,
 	pset/.code=\brw@psettrue,
-	notes/.code=\brw@notestrue
+	notes/.code=\brw@notestrue,
+	fancy/.code=\brw@fancytrue,
 }
 
 \ProcessPgfOptions{/brwabox}
@@ -44,22 +47,37 @@
 \fi
 
 \ifbrw@notes
-	\reversemarginpar
+	\ifbrw@fancy
+		\reversemarginpar
 
-	\NewAnnotatedTheorem{defn}{Definition}{\colorstar{DarkRed}}
-	\NewAnnotatedTheorem{theo}{Theorem}{\colorstar{DarkRed}}[defn]
-	\let\thm\theo
-	\let\endthm\endtheo
+		\NewAnnotatedTheorem{defn}{Definition}{\colorstar{DarkRed}}
+		\NewAnnotatedTheorem{theo}{Theorem}{\colorstar{DarkRed}}[defn]
+		\let\thm\theo
+		\let\endthm\endtheo
 	
-	\NewAnnotatedTheorem{fact}{Fact}{\colorplus{DarkGreen}}[defn]
-	\NewAnnotatedTheorem{lem}{Lemma}{\colorplus{DarkGreen}}[defn]
-	\NewAnnotatedTheorem{cor}{Corollary}{\colorplus{DarkGreen}}[defn]
+		\NewAnnotatedTheorem{fact}{Fact}{\colorplus{DarkGreen}}[defn]
+		\NewAnnotatedTheorem{lem}{Lemma}{\colorplus{DarkGreen}}[defn]
+		\NewAnnotatedTheorem{cor}{Corollary}{\colorplus{DarkGreen}}[defn]
 	
-	\NewAnnotatedTheorem{exm}{Example}{\colordisk{DarkPurple}}[defn]
-	\NewAnnotatedTheorem{que}{Question}{\colordisk{DarkPurple}}[defn]
+		\NewAnnotatedTheorem{exm}{Example}{\colordisk{DarkPurple}}[defn]
+		\NewAnnotatedTheorem{que}{Question}{\colordisk{DarkPurple}}[defn]
 
-	\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]
+		\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]
 	
-	\LetLtxMacro{\oldemph}{\emph}
-	\RenewDocumentCommand{\emph}{m}{\oldemph{\textcolor{DarkBlue}{#1}}}
+		\LetLtxMacro{\oldemph}{\emph}
+		\RenewDocumentCommand{\emph}{m}{\oldemph{\textcolor{DarkBlue}{#1}}}
+	\else
+		\declaretheorem[numberwithin=section,name=Definition]{defn}
+		\declaretheorem[sibling=defn,name=Theorem]{theo}
+		\let\thm\theo
+		\let\endthm\endtheo
+
+		\declaretheorem[sibling=defn,name=Fact]{fact}
+		\declaretheorem[sibling=defn,name=Lemma]{lem}
+		\declaretheorem[sibling=defn,name=Corollary]{cor}
+
+		\declaretheorem[sibling=defn,name=Example]{exm}
+		\declaretheorem[sibling=defn,name=Question]{que}
+		\declaretheorem[sibling=defn,name=Experiment]{exper}
+	\fi
 \fi
