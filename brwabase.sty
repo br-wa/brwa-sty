@@ -17,6 +17,7 @@
 \NewDocumentCommand{\RR}{}{\mathbb R}
 \NewDocumentCommand{\ZZ}{}{\mathbb Z}
 
+\NewDocumentCommand{\ind}{}{\perp\!\!\!\!\perp}
 \NewDocumentCommand{\tenp}{}{\otimes}
 \NewDocumentCommand{\dum}{}{\oplus}
 \NewDocumentCommand{\gan}{}{\varphi}
@@ -24,6 +25,7 @@
 \NewDocumentCommand{\eps}{}{\varepsilon}
 \NewDocumentCommand{\ol}{m}{\overline{#1}}
 \NewDocumentCommand{\Cl}{}{\mathcal C \ell}
+\RenewDocumentCommand{\d}{}{\,\textnormal{d}}
 
 \NewDocumentCommand{\gl}{}{\mathfrak{gl}}
 \RenewDocumentCommand{\sl}{}{\mathfrak{sl}}
@@ -66,3 +68,6 @@
 \DeclarePairedDelimiter{\abs}{|}{|}
 \DeclarePairedDelimiter{\set}{\{}{\}}
 \DeclarePairedDelimiter{\sqrb}{[}{]}
+
+\NewDocumentCommand{\vocab}{m}{\emph{\textcolor{DarkBlue}{#1}}}
+\NewDocumentCommand{\tss}{m}{\textsuperscript{#1}}

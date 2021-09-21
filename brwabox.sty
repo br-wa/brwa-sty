@@ -52,20 +52,20 @@
 
 		\NewAnnotatedTheorem{defn}{Definition}{\colorstar{DarkRed}}
 		\NewAnnotatedTheorem{theo}{Theorem}{\colorstar{DarkRed}}[defn]
+		\NewAnnotatedTheorem{law}{Law}{\colorstar{DarkRed}}[defn]
 		\let\thm\theo
 		\let\endthm\endtheo
 	
-		\NewAnnotatedTheorem{fact}{Fact}{\colorplus{DarkGreen}}[defn]
 		\NewAnnotatedTheorem{lem}{Lemma}{\colorplus{DarkGreen}}[defn]
 		\NewAnnotatedTheorem{cor}{Corollary}{\colorplus{DarkGreen}}[defn]
 	
+		\theoremstyle{definition}
+		\NewAnnotatedTheorem{fact}{Fact}{\colorplus{DarkGreen}}[defn]
+		
 		\NewAnnotatedTheorem{exm}{Example}{\colordisk{DarkPurple}}[defn]
 		\NewAnnotatedTheorem{que}{Question}{\colordisk{DarkPurple}}[defn]
-
-		\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]
-	
-		\LetLtxMacro{\oldemph}{\emph}
-		\RenewDocumentCommand{\emph}{m}{\oldemph{\textcolor{DarkBlue}{#1}}}
+		
+		\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]	
 	\else
 		\declaretheorem[numberwithin=section,name=Definition]{defn}
 		\declaretheorem[sibling=defn,name=Theorem]{theo}

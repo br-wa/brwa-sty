@@ -1,0 +1,21 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fontloader}[2021/09/09 0.0.0]
+
+\RequirePackage{pgfopts}
+
+\pgfkeys{
+	/fl/.cd,
+	font/.store in=\fl@fontfam,
+	font=cambria,
+}
+\ProcessPgfOptions{/fl}
+
+\RequirePackage{fontspec}
+\setmainfont[
+	Path=$HOME/texmf/tex/latex/brwa/.fonts/\fl@fontfam/,
+	UprightFont=*.ttf,
+	BoldFont=*b.ttf,
+    ItalicFont=*i.ttf,
+    BoldItalicFont=*z.ttf,
+]{\fl@fontfam}
+
