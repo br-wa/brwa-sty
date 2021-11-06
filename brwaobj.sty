@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{brwaobj}[2021/09/01 0.0.0]
+\ProvidesPackage{brwaobj}[2021/11/06 0.0.1]
 
 \RequirePackage{expl3}
 \RequirePackage{xparse}
@@ -8,7 +8,7 @@
 \RequirePackage{fontawesome}
 \RequirePackage{amsbsy}
 
-\NewDocumentCommand{\TemporaryTheoremName}{}{}
+\NewDocumentCommand{\resetcounter}{m}{\setcounter{#1}{0}}
 
 % custom theorem
 \NewDocumentCommand{\NewAnnotatedTheorem}{m m m o}{

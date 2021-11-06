@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{brwabase}[2020/09/01 0.0.2]
+\ProvidesPackage{brwabase}[2021/10/29 0.0.3]
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -7,9 +7,16 @@
 \RequirePackage{hyperref}
 \RequirePackage{mathtools}
 \RequirePackage{xparse}
+\PassOptionsToPackage{version=4}{mhchem}
+\RequirePackage{mhchem}
+\RequirePackage{siunitx}
+\sisetup{
+	exponent-product = \cdot,
+}
 
 \RenewDocumentCommand{\AA}{}{\mathbb A} %FIX THIS FOR CHEM
 \NewDocumentCommand{\CC}{}{\mathbb C}
+\NewDocumentCommand{\EE}{}{\mathbb E}
 \NewDocumentCommand{\FF}{}{\mathbb F}
 \NewDocumentCommand{\NN}{}{\mathbb N}
 \NewDocumentCommand{\PP}{}{\mathbb P}
@@ -26,6 +33,7 @@
 \NewDocumentCommand{\ol}{m}{\overline{#1}}
 \NewDocumentCommand{\Cl}{}{\mathcal C \ell}
 \RenewDocumentCommand{\d}{}{\,\textnormal{d}}
+\NewDocumentCommand{\opera}{m}{\operatorname{#1}}
 
 \NewDocumentCommand{\gl}{}{\mathfrak{gl}}
 \RenewDocumentCommand{\sl}{}{\mathfrak{sl}}
@@ -68,6 +76,9 @@
 \DeclarePairedDelimiter{\abs}{|}{|}
 \DeclarePairedDelimiter{\set}{\{}{\}}
 \DeclarePairedDelimiter{\sqrb}{[}{]}
+\DeclarePairedDelimiter{\vecn}{\langle}{\rangle}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
 \NewDocumentCommand{\vocab}{m}{\emph{\textcolor{DarkBlue}{#1}}}
 \NewDocumentCommand{\tss}{m}{\textsuperscript{#1}}

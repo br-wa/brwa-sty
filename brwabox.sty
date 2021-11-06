@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{brwabox}[2021/09/05 0.1.0]
+\ProvidesPackage{brwabox}[2021/11/06 0.1.1]
 
 \RequirePackage{amsthm}
 \RequirePackage{xparse}
@@ -32,21 +32,32 @@
 
 \ifbrw@pset
 	\newcounter{curprob}
-	\NewDocumentCommand{\addsol}{O{None}}{
+	\NewDocumentCommand{\addsol}{s O{None}}{
     	\stepcounter{curprob}
-		{\large \textbf{Solution \arabic{section}.\arabic{curprob}.}} Collaborators/Sources Consulted:
-		#1
+		\IfBooleanTF{#1}{
+			{\large \textbf{Solution \arabic{curprob}.}} Collaborators/Sources Consulted:
+			#2
+		}{
+			{\large \textbf{Solution \arabic{section}.\arabic{curprob}.}} Collaborators/Sources Consulted:
+			#2
+		}
 	}
-	\NewDocumentCommand{\addlabeledsol}{m O{None}}{
+	\NewDocumentCommand{\addlabeledsol}{s m O{None}}{
         \stepcounter{curprob}
-		{\large \textbf{Solution \arabic{section}.\arabic{curprob} (#1).}} Collaborators/Sources Consulted:
-    	#2
+		\IfBooleanTF{#1}{
+			{\large \textbf{Solution \arabic{section}.\arabic{curprob} (#2).}} Collaborators/Sources Consulted:
+    		#3
+		}{
+			{\large \textbf{Solution \arabic{section}.\arabic{curprob} (#2).}} Collaborators/Sources Consulted:
+    		#3
+		}
 	}
 	\NewDocumentCommand{\skipsol}{}{\stepcounter{curprob}}
 	\declaretheorem[numbered=no,name=Lemma]{lem}
 \fi
 
 \ifbrw@notes
+	\numberwithin{figure}{section}
 	\ifbrw@fancy
 		\reversemarginpar
 
