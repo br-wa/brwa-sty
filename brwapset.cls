@@ -5,6 +5,9 @@
 
 \RequirePackage{pgfopts}
 
+\newif\ifbps@fancy
+\bps@fancyfalse
+
 \setlength{\parskip}{7pt}
 \setlength{\parindent}{0pt}
 
@@ -17,7 +20,8 @@
     classid/.store in=\bps@classid,
     classid=\textcolor{red}{name your class},
     set/.store in=\bps@set,
-    set=0
+    set=0,
+	fancy/.code=\bps@fancytrue,
 }
 \ProcessPgfOptions{/bps}
 
@@ -31,8 +35,21 @@
     ItalicFont=*i.ttf,
     BoldItalicFont=*z.ttf,
 ]{\bps@fontfam}
+
 \RequirePackage[margin=\bps@margin]{geometry}
+\RequirePackage{fancyhdr}
+
+\newcounter{curprob}
+\NewDocumentCommand{\probdesc}{}{}
+\ifbps@fancy
+	\pagestyle{fancy}
+	\lhead{Student: Brandon Wang, ID\#921202283}
+	\rhead{Problem \arabic{section}.\arabic{curprob} (\probdesc)}
+	\setlength{\headheight}{20pt}
+	\setlength{\headsep}{3mm}
+\fi
 
 \RequirePackage{brwabase}
-\PassOptionsToPackage{pset}{brwabox} \RequirePackage{brwabox}
+\PassOptionsToPackage{pset}{brwabox} 
+\RequirePackage{brwabox}
 

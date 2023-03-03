@@ -31,7 +31,6 @@
 \ProcessPgfOptions{/brwabox}
 
 \ifbrw@pset
-	\newcounter{curprob}
 	\NewDocumentCommand{\addsol}{s O{None}}{
     	\stepcounter{curprob}
 		\IfBooleanTF{#1}{
@@ -44,6 +43,7 @@
 	}
 	\NewDocumentCommand{\addlabeledsol}{s m O{None}}{
         \stepcounter{curprob}
+		\RenewDocumentCommand{\probdesc}{}{#2}
 		\IfBooleanTF{#1}{
 			{\large \textbf{Solution \arabic{curprob} (#2).}} Collaborators/Sources Consulted:
     		#3
@@ -61,7 +61,18 @@
 			{\large \textbf{Solution \arabic{section}.\arabic{curprob}.}}
     	}
 	}
+	\NewDocumentCommand{\addblanklabeledsol}{s m}{
+        \stepcounter{curprob}
+		\RenewDocumentCommand{\probdesc}{}{#2}
+		\IfBooleanTF{#1}{
+			{\large \textbf{Solution \arabic{curprob} (#2).}}
+    	
+		}{
+			{\large \textbf{Solution \arabic{section}.\arabic{curprob} (#2).}}
+    	}
+	}
 	\NewDocumentCommand{\skipsol}{}{\stepcounter{curprob}}
+	\theoremstyle{definition}
 	\declaretheorem[numbered=no,name=Lemma]{lem}
 \fi
 
@@ -94,12 +105,14 @@
 		\NewAnnotatedTheorem{cor}{Corollary}{\colorplus{DarkGreen}}[defn]
 	
 		\theoremstyle{definition}
+		\NewAnnotatedTheorem{algo}{Algorithm}{\colorstar{DarkRed}}[defn]
 		\NewAnnotatedTheorem{fact}{Fact}{\colorplus{DarkGreen}}[defn]
 		
 		\NewAnnotatedTheorem{exm}{Example}{\colordisk{DarkPurple}}[defn]
 		\NewAnnotatedTheorem{que}{Question}{\colordisk{DarkPurple}}[defn]
 		
 		\NewAnnotatedTheorem{exper}{Experiment}{\colorflask{DarkPurple}}[defn]	
+		\NewAnnotatedTheorem{met}{Method}{\colorflask{DarkPurple}}[defn]	
 	\else
 		\declaretheorem[numberwithin=section,name=Definition]{defn}
 		\declaretheorem[sibling=defn,name=Theorem]{theo}
