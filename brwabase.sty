@@ -15,6 +15,8 @@
 }
 \PassOptionsToPackage{svgnames}{xcolor} \RequirePackage{xcolor}
 \RequirePackage{listings}
+\RequirePackage{csquotes}
+\RequirePackage{chemfig}
 
 \RenewDocumentCommand{\AA}{}{\mathbb A} %FIX THIS FOR CHEM
 \NewDocumentCommand{\CC}{}{\mathbb C}
@@ -26,6 +28,7 @@
 \NewDocumentCommand{\QQ}{}{\mathbb Q}
 \NewDocumentCommand{\RR}{}{\mathbb R}
 \NewDocumentCommand{\ZZ}{}{\mathbb Z}
+\NewDocumentCommand{\mathDJ}{}{\text{\raisebox{0.25ex}{-}\kern-0.4em$\m@th D$}} % from https://tex.stackexchange.com/questions/387550/how-to-define-a-symbol-for-mathematics
 
 \NewDocumentCommand{\ind}{}{\perp\!\!\!\!\perp}
 \NewDocumentCommand{\tenp}{}{\otimes}
